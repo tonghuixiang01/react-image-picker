@@ -23,13 +23,14 @@ class Demo extends Component {
   }
 
   onPickImages(images) {
-    this.setState({images})
+    // send saved state to firebase
+    console.log("images");
+    this.setState({images});
   }
 
   render() {
     return (
       <div>
-        <h1>React Image Picker</h1>
         <h3>Single Select</h3>
         <ImagePicker 
           images={imageList.map((image, i) => ({src: image, value: i}))}
@@ -48,5 +49,57 @@ class Demo extends Component {
     )
   }
 }
+
+
+
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      loading: false,
+      image: ''
+    }
+    
+    this.search = this.search.bind(this);
+  }
+  
+  // Get initial image
+  componentDidMount() {
+    this.getImage();
+  }
+  
+  // Get search value from input box on submit
+  search(e) {
+    e.preventDefault();
+    this.getImage(this.refs.search.value);
+  }
+  
+  // Set image state to the search value
+  getImage(search = 'nature') {
+    this.setState({
+      image: `https://source.unsplash.com/featured/?${search}`
+    })
+  }
+  
+  render() {
+    const divStyle = {
+      backgroundImage: `url(${this.state.image})`
+    }
+    
+    // Set `search__results` bg image to the image url
+    return (
+       <div className="search">
+          <form onSubmit={this.search}>
+            <input className="search__input" type="text" placeholder="search..." ref="search" />
+          </form>
+          <div style={divStyle} className="search__results">
+          </div>
+      </div>
+      )
+  }
+}
+
+render(<Search />, document.getElementById("app"))
 
 render(<Demo/>, document.querySelector('#root'))
