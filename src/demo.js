@@ -1,21 +1,12 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import ImagePicker from './react-image-picker'
-
-import img1 from './assets/images/kitten/200.jpg'
-import img2 from './assets/images/kitten/201.jpg'
-import img3 from './assets/images/kitten/202.jpg'
-import img4 from './assets/images/kitten/203.jpg'
-import img8 from './assets/images/kitten/200.jpg'
-import img7 from './assets/images/kitten/201.jpg'
-import img6 from './assets/images/kitten/202.jpg'
-import img5 from './assets/images/kitten/203.jpg'
 import { version } from 'punycode';
 
-var imageList = [];
-// external URLs also work as well
-console.log("inital imageList");
-console.log(imageList);
+
+var imageList = [];  
+// should this be part of the class state?
+// but imageList needs to be referenced by outside functions
 
 function encodeInputValue(value) {
   // making text into argument in the URL
@@ -34,12 +25,12 @@ function parseJSON(response) {
   return response.json();
 }
 
-function getGifs(videos) {
+function getGifsFromJSON(videos) {
   // initialise an array of URLs
   let url_arr = [];
   if (videos.data.length === 0) {
     displayMessage("No gifs", true);
-    return url_arr  // return empty array
+    imageList = [];  // set imageList to None, but there is error
   }
   for (var gif in videos.data) {
     let video_url = videos.data[gif].images.original.mp4;
@@ -50,22 +41,8 @@ function getGifs(videos) {
     // console.log(still_url);
     url_arr.push(still_url);
   }
-  return url_arr  // return an array of URLs
-}
-
-function loadGifs(url) {
-  fetch(url).then(handleErrors).then(parseJSON).then(function (videos) {
-    // when the URLs is fetch, error handled, JSON parsed
-    console.log(videos);
-    // receive array of URL from function
-    imageList = getGifs(videos);  // update the imageList
-    console.log("IMAGELIST");
-    console.log(imageList);
-    ImagePicker.images;
-
-  }).catch(function (error) {
-    displayMessage("Request failed: " + error, true);
-  });
+  imageList = url_arr;
+  return url_arr;
 }
 
 
@@ -74,9 +51,10 @@ class Search extends React.Component {
     super(props);
 
     this.state = {
-      loading: false,
-      image: null,
-      images: []
+      classimageList: [],  // list of imageURLs
+      largeimage: '',  // legacy large background image for single image search
+      image: null,  // meant for the text box
+      images: [],  // meant for the text box
     }
 
     this.search = this.search.bind(this);
@@ -84,7 +62,7 @@ class Search extends React.Component {
 
   // when an image (from single select) is selected
   onPickImage(image) {
-    this.setState({ image })
+    this.setState({ image });  // changing the textbox
   }
 
   // when an image (from multiple select) is selected
@@ -92,17 +70,17 @@ class Search extends React.Component {
     // send saved state to firebase
     console.log("image selected");
     console.log(images);  // apparently it does not tell us the changes
-    this.setState({ images });
+    this.setState({ images });  // changing the textbox
   }
 
-  // Get initial image
-  componentDidMount() {
-    this.getImage();
-  }
-
+  // Get initial image - silenced
+  // componentDidMount() {
+  //   this.getImage();
+  // }
+  
   // Get search value from input box on submit
   search(e) {
-    e.preventDefault();
+    e.preventDefault();  // do not search "search ..."
     this.getImage(this.refs.search.value);
   }
 
@@ -110,21 +88,37 @@ class Search extends React.Component {
   getImage(search = 'nature') {
     let url = "https://api.giphy.com/v1/gifs/search?q=" + encodeInputValue(search) + "&api_key=" + api_key + "&limit=8";
     console.log("API url - " + url);
-    loadGifs(url);
-    // updating of imageList will not be done here because it isn't done
+
+    let results = [];
+    fetch(url).then(handleErrors).then(parseJSON).then(function (videos) {
+      // when the URLs is fetch, error handled, JSON parsed
+      console.log(videos);
+      imageList = getGifsFromJSON(videos);  // update imageList in the function
+      console.log(imageList);  // the imageList prints correctly
+
+    }).catch(function (error) {
+      displayMessage("Request failed: " + error, true);
+    });
+
     this.setState({
-      image: `https://source.unsplash.com/featured/?${search}`
+      // largeimage: `https://source.unsplash.com/featured/?${search}`,
+      classimageList: imageList  // does not seem to have any effect
     })
   }
 
   render() {
     const divStyle = {
-      backgroundImage: `url(${this.state.image})`
+      backgroundImage: `url(${this.state.largeimage})`
     }
 
     // Set `search__results` bg image to the image url
     return (
-      <div className="search">
+      <div>
+        <div>
+          <form onSubmit={this.search}>
+            <input className="input" type="text" placeholder="search..." ref="search" />
+          </form>
+        </div>
 
         <div>
           <h3>Single Select</h3>
@@ -134,7 +128,7 @@ class Search extends React.Component {
             multiple={false}
           />
           <textarea rows="1" cols="100" value={this.state.image && JSON.stringify(this.state.image)} disabled />
-          
+
           <h3>Multiple Select</h3>
           <ImagePicker
             images={imageList.map((image, i) => ({ src: image, value: i }))}
@@ -142,14 +136,6 @@ class Search extends React.Component {
             multiple={true}
           />
           <textarea rows="8" cols="100" value={this.state.images && JSON.stringify(this.state.images)} disabled />
-        </div>
-
-        <div>
-          <form onSubmit={this.search}>
-            <input className="search__input" type="text" placeholder="search..." ref="search" />
-          </form>
-          <div style={divStyle} className="search__results">
-          </div>
         </div>
       </div>
     )
