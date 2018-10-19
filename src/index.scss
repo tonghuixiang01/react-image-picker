@@ -1,11 +1,15 @@
 .image_picker {
   width: 100%;
 
+  // the whole thing
+
   .responsive {
     position: relative;
     margin: 0 6px;
     float: left;
     opacity: 1;
+
+    // don't know what this respresents
 
     .thumbnail {
       border: 1px solid #ddd; /* Gray border */
@@ -15,21 +19,45 @@
       opacity: 1;
       margin: 0;
 
+      //thumbnail is the picture 
+
       &:hover {
         box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.7);
+        opacity: 0.3;
+        // found out that this &:hover appears to work,
+        // but .icon does not
+        .icon {
+          background: url("./assets/images/heart.png");
+          background-size: cover;
+          height: 45px;
+          width: 45px;
+          opacity: 1;
+        }
+        // url is defined from here
       }
     }
-
+    
     .selected {
       background-color: rgba(0, 140, 186, 1);
     }
     
     &:hover {
       cursor: pointer;
+      .icon {
+        background: url("./assets/images/heart.png");
+        background-size: cover;
+        height: 45px;
+        width: 45px;
+        opacity: 1;
+      }
+      // does not work here either
+
+      
     }
 
     .checked {
       display: none;
+      
     }
   }
 
@@ -40,22 +68,55 @@
       display: inline-block;
       transition: .5s ease;
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 10%;
+      right: 7%;
 
       .icon {
-        background: url("./assets/images/check.png");
+        background: url("./assets/images/heart.png");
         background-size: cover;
-        height: 75px;
-        width: 75px;
+        height: 45px;
+        width: 45px;
+
+        &:hover {
+          background: url("./assets/images/heart.png");
+          background-size: cover;
+          height: 45px;
+          width: 45px;
+          opacity: 0.7;
+        }
+        // when selected here, it workd but not hover
       }
+
+      &:hover .icon {
+
+        background: url("./assets/images/heart.png");
+        background-size: cover;
+        height: 45px;
+        width: 45px;
+        opacity: 0.7;
+        } 
+        // i wrote here based on what is on javascript
+
+    }
+    &:hover .checked {
+
+    background: url("./assets/images/heart.png");
+    background-size: cover;
+    height: 45px;
+    width: 45px;
+    opacity: 0.7;
+    }  // i wrote here based on the position wrote in checked
+      // i followed the container1:hover .image method but 
+      // didnt get results
+    
+  
+
+    .clear {
+    clear: both;
     }
   }
-
-  .clear {
-    clear: both;
-  }
 }
+
 
 
 .input {
@@ -87,4 +148,83 @@ body,
 * {
   box-sizing: border-box;
   transition: 275ms;
+}
+// dunno why suddenly no background color
+
+#bottomtext {
+  background-color : #D3D3D3;
+  width: 100%;
+  height: 50px;
+}
+
+#btmleft {
+text-indent: 30px;
+float : left;
+color : grey
+}
+
+#btmright{
+float : right;
+color : grey
+}
+
+#container {
+  width: 100%;
+  margin: auto;
+}
+#first {
+  border-bottom: 1px solid black;
+  width: 10%;
+  float: left;
+  height: 50px;
+  background: url("./assets/images/logo2.jpg");
+  background-size: cover;
+      // img being auto-adjusted by adjusting the width in propostion,
+      // leading to img being cut
+
+    
+}
+#inbetween {
+  border-bottom: 1px solid black;
+  height: 50px;
+  width: 1px;
+  float: left;
+  font-family : Apple Chancery, cursive;
+  font-size : 20px;
+    
+
+}
+#second {
+  border-bottom: 1px solid black;
+  text-indent: 30px;
+  padding-left: 10px;
+  font-size : 20px;
+  width: 10%;
+  float: left;
+  height: 50px;
+  font-family : Apple Chancery, cursive
+    
+}
+#third {
+  border-bottom: 1px solid black;
+  text-indent: 30px;
+  padding-left: 10px;
+  width : 72%;
+  font-size : 20px;
+  float: left;
+  height: 50px;
+  font-family : Apple Chancery, cursive;
+  color: grey
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }

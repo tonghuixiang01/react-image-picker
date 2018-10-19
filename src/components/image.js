@@ -25,7 +25,8 @@ export default class Image extends Component {
         />
         <div className="checked">
           {/*<img src={imgCheck} style={{ width: 75, height: 75, objectFit: "cover" }}/>*/}
-          <div className="icon"/>
+          <div className="icon"/> 
+          
         </div>
       </div>
     )

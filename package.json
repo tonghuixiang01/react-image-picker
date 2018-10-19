@@ -15,11 +15,9 @@
     "react-dom": "^0.14.0 || ^16.1.1"
   },
   "dependencies": {
-    "firebase": "^5.5.4",
     "immutable": "^3.8.2",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-router-dom": "^4.3.1"
+    "react-dom": "^16.1.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -42,5 +40,18 @@
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.9.4",
     "webpack-merge": "^4.1.1"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonghuikang/react-image-picker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/tonghuikang/react-image-picker/issues"
+  },
+  "homepage": "https://github.com/tonghuikang/react-image-picker#readme"
 }

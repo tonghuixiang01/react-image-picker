@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
+
 <body>
-  <h1>React Image Picker</h1>
+  <h1>
+    <div id="container">
+    <div id="first"></div>
+    <div id="inbetween">
+      <p> | </p>
+      </div>
+  
+    <div id="second">
+      <p> Search </p>
+        </div>
+    <div id="third">
+      <p> Favorites(1)</p>
+        </div>
+    </div>
+  </h1>
+  
   <div id="app"></div>
+  
+  <button class = "button" >Button</button>  
+  <!-- put button with no link here
+   styling @ css-->      
 </body>
+<div id="bottomtext">
+    <p id="btmleft"> Gallereasy POC webapp </p>
+    <p id="btmright"> 2359 Media </p>
+    </div>
+
+
+
+
+
 </html>
