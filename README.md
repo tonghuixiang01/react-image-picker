@@ -1,9 +1,32 @@
-[![NPM](https://img.shields.io/npm/v/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
-[![npm](https://img.shields.io/npm/dt/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
-[![npm](https://img.shields.io/npm/dm/react-image-picker.svg)](https://www.npmjs.com/package/react-image-picker)
-[![npm](https://img.shields.io/npm/l/react-image-picker.svg)](http://opensource.org/licenses/MIT)
+# Notes from Hui Kang
 
-# React Image Picker
+## ISSUES
+The checkboxes persist after changing the queries (checkbox persistence) <BR>
+Need to submit twice for the pictures to update (or submit once and then click once) <BR>
+
+## TODO
+Solve the issues above <BR>
+Change the logo (ask Hui Xiang) <BR>
+Break into 4 thumbnails align per row <BR>
+Deregister from the list (require solving checkbox persistence) <BR>
+Fetch when init (require solving checkbox persistence) <BR>
+Create a new tab showing all the saved pictures: 'A dedicated page that the user can go to to view their tagged favourite images at any time' <BR>
+'Different app states should ideally be accounted for with UI feedback to the user, e.g. errors, loading, etc' <BR>
+'Add a “Fetch More” button displayed below the results that will fetch the next 8 image results for the current search'
+
+### For people who do not know what `NPM` does
+Install `npm` until you can `npm` on the command line. I think I `brew install npm` on my MacBook some time ago.
+```
+npm init -y
+npm install
+npm run build
+npm start
+```
+
+![screenshot](https://raw.githubusercontent.com/tonghuikang/react-image-picker/master/docs/img/screenshot.png)
+
+# The rest is by the original (?) repo creator - React Image Picker
+
 The image picker is used for selecting single or multiple images from gallery.
 
 [Live Demo](https://bagongkia.github.io/react-image-picker/)
@@ -20,7 +43,7 @@ npm install react-image-picker
 ```
 
 ### Examples
-![React Image Picker Demo](https://raw.githubusercontent.com/bagongkia/react-image-picker/master/docs/img/react-image-picker-demo.jpg)
+![React Image Picker Demo](https://raw.githubusercontent.com/tonghuikang/react-image-picker/master/docs/img/react-image-picker-demo.jpg)
 
 ```javascript
 //ES6
