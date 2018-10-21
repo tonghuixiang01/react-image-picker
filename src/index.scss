@@ -26,16 +26,11 @@
         opacity: 0.3;
         // found out that this &:hover appears to work,
         // but .icon does not
-        .icon {
-          background: url("./assets/images/heart.png");
-          background-size: cover;
-          height: 45px;
-          width: 45px;
-          opacity: 1;
-        }
+        
         // url is defined from here
       }
     }
+    
     
     .selected {
       background-color: rgba(0, 140, 186, 1);
@@ -43,13 +38,7 @@
     
     &:hover {
       cursor: pointer;
-      .icon {
-        background: url("./assets/images/heart.png");
-        background-size: cover;
-        height: 45px;
-        width: 45px;
-        opacity: 1;
-      }
+      
       // does not work here either
 
       
@@ -69,43 +58,23 @@
       transition: .5s ease;
       position: absolute;
       bottom: 10%;
-      right: 7%;
+      right: 5%;
 
       .icon {
         background: url("./assets/images/heart.png");
         background-size: cover;
-        height: 45px;
+        height: 42px;
         width: 45px;
 
-        &:hover {
-          background: url("./assets/images/heart.png");
-          background-size: cover;
-          height: 45px;
-          width: 45px;
-          opacity: 0.7;
-        }
-        // when selected here, it workd but not hover
+        
+        // when selected here, it worked but not hover
       }
 
-      &:hover .icon {
-
-        background: url("./assets/images/heart.png");
-        background-size: cover;
-        height: 45px;
-        width: 45px;
-        opacity: 0.7;
-        } 
+      
         // i wrote here based on what is on javascript
 
-    }
-    &:hover .checked {
-
-    background: url("./assets/images/heart.png");
-    background-size: cover;
-    height: 45px;
-    width: 45px;
-    opacity: 0.7;
-    }  // i wrote here based on the position wrote in checked
+    
+      // i wrote here based on the position wrote in checked
       // i followed the container1:hover .image method but 
       // didnt get results
     
@@ -114,6 +83,7 @@
     .clear {
     clear: both;
     }
+    } 
   }
 }
 
@@ -173,46 +143,34 @@ color : grey
   margin: auto;
 }
 #first {
-  border-bottom: 1px solid black;
-  width: 10%;
+ 
+  width: 200px;
+  margin-right: 20px;
   float: left;
-  height: 50px;
+  height: 100px;
   background: url("./assets/images/logo2.jpg");
-  background-size: cover;
+  background-size: 100% ;
       // img being auto-adjusted by adjusting the width in propostion,
       // leading to img being cut
-
-    
 }
-#inbetween {
-  border-bottom: 1px solid black;
-  height: 50px;
-  width: 1px;
-  float: left;
-  font-family : Apple Chancery, cursive;
-  font-size : 20px;
-    
 
-}
 #second {
-  border-bottom: 1px solid black;
+  border-left: 1px solid black;
   text-indent: 30px;
-  padding-left: 10px;
-  font-size : 20px;
-  width: 10%;
+  font-size : 30px;
+  width: 150px;
   float: left;
-  height: 50px;
-  font-family : Apple Chancery, cursive
-    
+  height: 100px;
+  font-family : Apple Chancery, cursive;  
 }
 #third {
-  border-bottom: 1px solid black;
+  
   text-indent: 30px;
-  padding-left: 10px;
-  width : 72%;
-  font-size : 20px;
+  
+  width : auto;
+  font-size : 30px;
   float: left;
-  height: 50px;
+  height: 100px;
   font-family : Apple Chancery, cursive;
   color: grey
 }
